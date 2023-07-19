@@ -1,34 +1,39 @@
+import dependencies.AndroidEnvironmentValue
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace 'com.cellodove.precompile_example'
-    compileSdk 33
+    compileSdk = AndroidEnvironmentValue.COMPILE_SDK
 
     defaultConfig {
-        applicationId "com.cellodove.precompile_example"
-        minSdk 29
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        namespace = AndroidEnvironmentValue.APPLICATION_ID
+        minSdk = AndroidEnvironmentValue.MIN_SDK
+        targetSdk = AndroidEnvironmentValue.TARGET_SDK
+        versionCode = AndroidEnvironmentValue.VERSION_CODE
+        versionName = AndroidEnvironmentValue.VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
+    }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 }
 
